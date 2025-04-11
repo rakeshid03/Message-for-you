@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SEO Meta Tags -->
+  <title>MESSAGE FOR YOU</title>
+  <meta name="description" content="Leave a message for next person who open this site! A fun little Firebase guestbook built by @rakeshid03.">
+  <!-- Open Graph (for Facebook, LinkedIn, etc.) -->
+  <meta property="og:title" content="Message for you">
+  <meta property="og:description" content="Leave your message for the next person">
+  <meta property="og:image" content="https://yourdomain.com/favicon.png">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" crossorigin>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-database-compat.js"></script>
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/jpg" href="favicon.png" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!--HEADER CONTAINS LOGO-->
+  <header> <img src="logo.png" height="40px" width="43px" alt="logo of message for you website"> MESSAGE FOR YOU</header>
+  
+  <!--New Update Message-->
+  <div class="Current-message"></div>
+  
+  <form>
+    <label for="message">
+      Leave a message
+    </label>
+    <textarea name="text" maxlength="250" id="massagebox" rows="3" placeholder="Type your message"></textarea>
+    <button>Post</button>
+  </form>
+  
+  <!--Contact me-->
+  <div class="contact">
+    <a href="https://rakeshid03.github.io/about-me/" target="_self">Made with ☕ by @rakeshid03</a>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
