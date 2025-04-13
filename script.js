@@ -1,4 +1,19 @@
-//--- share image
+// Logo Animation 
+window.onload = () => {
+  const letters = "abcdefghijklmnopqrstuvwxyz";
+  var text = document.querySelector("#shareBtn");
+  let i = 0,
+    interval = setInterval(() => {
+      text.innerText = text.dataset.value
+        .split("")
+        .map((l, idx) => idx < i ? l : letters[Math.random() * 26 | 0])
+        .join("");
+      if (i >= text.dataset.value.length) clearInterval(interval);
+      i += 0.5;
+    }, 35);
+};
+
+//--- Share image---
 shareBtn.onclick = () => {
   const m = document.querySelector(".Current-message");
   html2canvas(m, { scale: 4, backgroundColor: null }).then(c => {
