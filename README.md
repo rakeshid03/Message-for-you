@@ -2,13 +2,9 @@
 
 *A fun and heartwarming way to leave a message for the next stranger who visits.*
 
----
-
 ## 🌐 About the Project
 
 **Message For You** is a simple and clean web experiment where anyone can write or leave a short message — and the next person who visits the site will see it. it like passing a digital note in a bottle across the internet.
-
----
 
 ## ✨ Features
 
@@ -19,8 +15,6 @@
 - Leave a message for the next visitor
 - See what someone else left before you
 - Mobile and desktop friendly
-
----
 
 ## 🚀 How It Works
 
