@@ -31,4 +31,9 @@
 
 ## 🤝🏻 Want to Contribute?
 
-Feel free to fork this project, suggest new features, or improve the UI/UX. Pull requests are welcome!
+Welcome contributions from the open-source community to help make this project even better. Feel free to fork this project to suggest new features, improve the UI/UX, remove bugs.
+Pull requests are welcome!
+
+## 🔗 Contact me
+
+If you have any questions, comments or concerns about this project, contact me by [`@rakeshid03`](https://rakeshid03.github.io/about-me/).
