@@ -42,31 +42,48 @@ shareBtn.onclick = () => {
   });
 };
 
-firebase.initializeApp({
-  apiKey: "AIzaSyAuFivX_KHL7JyYoeK5u6BvNPNbPaMTpYU",
-  authDomain: "leave-a-message-376f3.firebaseapp.com",
-  databaseURL: "https://leave-a-message-376f3-default-rtdb.firebaseio.com",
-  projectId: "leave-a-message-376f3",
-  storageBucket: "leave-a-message-376f3.appspot.com",
-  messagingSenderId: "1012538891297",
-  appId: "1:1012538891297:web:12d8bc8aa5a887e1299760"
-});
+const gun = Gun(),user = gun.user();
+const form = document.querySelector("form"), box = document.getElementById("massagebox"), output = document.querySelector(".Current-message");
 
-const db = firebase.database();
-const form = document.querySelector("form");
-const box = document.getElementById("massagebox");
-const output = document.querySelector(".Current-message");
+// Auto-authenticate
+const username = "demoUser", password = "securePassword123";
+user.create(username, password, () => user.auth(username, password, setupMessaging));
 
-form.onsubmit = e => {
-  e.preventDefault();
-  const msg = box.value.trim();
-  if (msg) {
-    db.ref("latestMessage").set({ text: msg, timestamp: Date.now() });
+// Sanitizer to block XSS
+function sanitize(input) {
+  const div = document.createElement("div");
+  div.textContent = input;
+  return div.innerHTML;
+}
+
+// Message system encryption & validation
+function setupMessaging() {
+  const messages = user.get("messages");
+  // Submit handler
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const rawMsg = box.value.trim();
+    const msg = sanitize(rawMsg);
+    // Validate input
+    if (!msg || msg.length > 500) return alert("Invalid message.");
+    const encrypted = await Gun.SEA.encrypt(msg, user._.sea);
+    messages.set({
+      text: encrypted,
+    });
     box.value = "";
-  }
-};
-
-db.ref("latestMessage").on("value", snap => {
-  const data = snap.val();
-  if (data) output.textContent = `"${data.text}"`;
-});
+  };
+  
+  // Display messages (decrypt & sanitize)
+  messages.map().on(async (data) => {
+    if (data && data.text) {
+      try {
+        const decrypted = await Gun.SEA.decrypt(data.text, user._.sea);
+        if (decrypted) {
+          output.innerHTML = sanitize(decrypted);
+        }
+      } catch (err) {
+        console.warn("Decryption failed", err);
+      }
+    }
+  });
+}
